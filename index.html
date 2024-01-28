@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="quote"></div>
+    <div id="author"></div>
+    <button>New Quote</button>
+    <script>
+        let realdata="";
+        const quote=document.getElementById('quote');
+        const author=document.getElementById('author');
+
+        const randomfun=(realdata)=>{
+            let ram=Math.floor(Math.random()*10);
+            quote.innerText=`${realdata[ram].text}`;
+            author.innerText=`${realdata[ram].quote}`;
+
+        }
+
+        const getquote=async()=>{
+        const api= 'https://type.fit/api/quotes'
+        
+        try {
+            let data=await fetch(api);
+            let realdata=await data.json();
+            randomfun(realdata);
+        } catch (error) {
+            
+        }
+        }
+        getquote();
+        
+    </script>
+</body>
+</html>
